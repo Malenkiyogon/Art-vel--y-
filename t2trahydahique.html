@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>T2TRAHYDAHIQUE – Invocation Clicker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: radial-gradient(circle, #0f0f1a, #000);
+      color: #fefefe;
+      font-family: Georgia, serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 1vh;
+      letter-spacing: 0.1em;
+    }
+    p {
+      font-size: 1.1em;
+      color: #ccc;
+      margin-bottom: 4vh;
+    }
+    button {
+      padding: 1em 2em;
+      font-size: 1em;
+      background-color: #5a32a3;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-bottom: 3vh;
+    }
+    button:hover {
+      background-color: #7b4dd0;
+    }
+    .revealed {
+      margin-top: 2vh;
+      font-size: 1.2em;
+      color: #ffd700;
+    }
+  </style>
+</head>
+<body>
+  <h1>T2TRAHYDAHIQUE</h1>
+  <p>Chaque clic active un souffle du chant sacré.</p>
+  <button onclick="triggerSound()">🎶 Cli_c pour invoquer</button>
+  <p id="state">Souffles activés : 0 / 5</p>
+
+  <audio id="track1" src="Yeux_dIma_13_6.mp3"></audio>
+  <audio id="track2" src="Yeux_dIma_13_6.mp3"></audio>
+  <audio id="track3" src="Yeux_dIma_13_6.mp3"></audio>
+  <audio id="track4" src="Yeux_dIma_13_6.mp3"></audio>
+  <audio id="track5" src="Yeux_dIma_13_6.mp3"></audio>
+
+  <div class="revealed" id="completeMessage" style="display:none;">
+    ✨ Tous les souffles sont en vibration. Le chant commence...
+  </div>
+
+  <script>
+    let step = 0;
+    const total = 5;
+    function triggerSound() {
+      step++;
+      document.getElementById("state").textContent = "Souffles activés : " + step + " / " + total;
+      if (step <= total) {
+        const audio = document.getElementById("track" + step);
+        audio.volume = 0.2 * step;
+        audio.play();
+      }
+      if (step === total) {
+        document.getElementById("completeMessage").style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>
